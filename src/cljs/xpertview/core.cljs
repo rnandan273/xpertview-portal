@@ -205,10 +205,7 @@
 (defn home-page []
   [:div.container
    [:div.jumbotron
-    [:h1 "Welcome to xpertview"]]
-   [:div.row
-    [:div.col-md-12
-     [:h2 "Coming Soon"]]]])
+    [:h1 "Coming Soon..."]]])
 
 (def pages
   {:home #'home-page
