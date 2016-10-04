@@ -38,6 +38,8 @@
                  [twilio-api "1.0.1"]
                  [bk/ring-gzip "0.1.1"]
                  [clj-oauth "1.5.4"]
+                 [com.taoensso/timbre "4.1.1"]
+                 [org.clojure/core.async "0.1.346.0-17112a-alpha"]
                  [com.datomic/datomic-free "0.9.5394" :exclusions [org.slf4j/log4j-over-slf4j org.slf4j/slf4j-nop com.google.guava/guava]]
                  [luminus-http-kit "0.1.4"]]
 
