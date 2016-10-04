@@ -40,17 +40,10 @@
 (defn home-page []
   [:div.container
    [:div.jumbotron
-    [:h1 "Welcome to xpertview"]
-    [:p "Time to start building your site!"]
-    [:p [:a.btn.btn-primary.btn-lg {:href "http://luminusweb.net"} "Learn more »"]]]
+    [:h1 "Welcome to xpertview"]]
    [:div.row
     [:div.col-md-12
-     [:h2 "Welcome to ClojureScript"]]]
-   (when-let [docs @(rf/subscribe [:docs])]
-     [:div.row
-      [:div.col-md-12
-       [:div {:dangerouslySetInnerHTML
-              {:__html (md->html docs)}}]]])])
+     [:h2 "Coming soon"]]]])
 
 (def pages
   {:home #'home-page
