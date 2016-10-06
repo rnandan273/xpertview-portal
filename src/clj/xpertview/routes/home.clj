@@ -3,6 +3,7 @@
             [compojure.core :refer [defroutes GET POST]]
             [ring.util.http-response :as response]
             [org.httpkit.client :as http]
+            [xpertview.ugutils :as ug]
             [taoensso.timbre :as timbre]
             [clojure.java.io :as io]
             [clojure.string :as str]
@@ -18,17 +19,23 @@
 
 (defn register-user [request]
   (let [user_data (or (get-in request [:params])
-                       (get-in request [:body]))]
-  (timbre/info (str "You posted: " user_data))
-  {:status "true"}
-  ))
+                      (get-in request [:body]))
+       server-resp  (json/read-str (ug/register-user request) :key-fn keyword)]
+   (timbre/info (str "You posted: " user_data))
+   (timbre/info (str "UG response: " server-resp))
+   server-resp 
+   ))
+  
 
 (defn login-user [request]
   (let [user_data (or (get-in request [:params])
-                       (get-in request [:body]))]
-  (timbre/info (str "You posted: " user_data))
-  {:status "true"}
-))
+                      (get-in request [:body]))
+        server-resp (json/read-str (ug/get-user-token request) :key-fn keyword)]
+   (timbre/info (str "You posted: " user_data))
+   
+   {:status "true"}
+   (timbre/info (str "UG response: " server-resp))
+   server-resp))
 
 (defroutes home-routes
   (GET "/" [] (home-page))

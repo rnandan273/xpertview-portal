@@ -39,16 +39,24 @@
 (def note-color "#FF6161")
 (def product-dislike-color "#DCDEE0")
 (def product-bg-color "#DCDEE0")
+(def orgname "rnandan273")
+(def appname "mysportzbee")
 
 
 (defn login-page []
- (let [login-doc (r/atom {:email "" :username "" :password "" :confirm-password ""})
+ (let [login-doc (r/atom {:email "" :username "" :password "" :confirm-password "" :orgname orgname :appname appname})
        login-status (rf/subscribe [:login-status])]
  (fn []
    (log (str "Login PAGE : " @login-status))
    [:div {:style {:display "flex" :flex-direction "column" :flex-flow "column wrap"}}
      [:div {:style {:flex 1 :align-self "center"}} [:h3 {:style {:font-family "avenir" :color note-color}} (if (= 0 @login-status) (str "Your login is successful ") (str "Login With Us"))]
       ]
+
+      [:div {:style {:flex 1 :align-self "center"}}
+          [rui/text-field {:style {:font-family "avenir" :color note-color}
+                           :hintText "Username"
+                           :floating-label-text "Username"
+                           :on-change #(swap! login-doc assoc :username (.. % -target -value))}]]
 
      [:div {:style {:flex 1 :align-self "center"}}
           [rui/text-field {:style {:font-family "avenir" :color note-color}
@@ -74,7 +82,7 @@
            ]]])))
 
 (defn register-page []
- (let [register-doc (r/atom {:email "" :username "" :password "" :confirm-password ""})
+ (let [register-doc (r/atom {:email "" :username "" :password "" :confirm-password "" :orgname orgname :appname appname})
        register-status (rf/subscribe [:register-status])]
  (fn []
    (log (str "Register PAGE : " @register-status))

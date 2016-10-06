@@ -26,13 +26,13 @@
   (let [kwresp (walk/keywordize-keys response)]
     (log (str "POST --->>>> " kwresp))
     (log (keys kwresp))
-    (rf/dispatch [:register-complete 0])))
+    (rf/dispatch [:register-complete (if (contains? kwresp :error) 1 0)])))
 
 (defn read-login-response [response]
   (let [kwresp (walk/keywordize-keys response)]
     (log (str "POST --->>>> " kwresp))
     (log (keys kwresp))
-    (rf/dispatch [:login-complete 0])))
+    (rf/dispatch [:login-complete (if (contains? kwresp :error) 1 0)])))
 
 (reg-event-db
   :start-download
